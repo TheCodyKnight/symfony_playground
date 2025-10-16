@@ -54,3 +54,14 @@ Hinweise
 - Für weitere Entwicklungsschritte kannst du Controller in `src/Controller/` anlegen und Routen per Attribut-Annotation (`#[Route('/...')]`) definieren.
 
 Viel Erfolg beim Entwickeln!
+
+Continuous Integration (GitHub Actions)
+-------------------------------------
+
+Eine einfache GitHub Actions CI ist im Workflow `.github/workflows/ci.yml` enthalten. Sie führt bei Pushes und Pull Requests gegen `main`/`master` die folgenden Schritte aus:
+
+- Setzt PHP (Matrix 8.2, 8.3, 8.4)
+- Installiert Composer-Abhängigkeiten
+- Führt `php bin/phpunit` aus
+
+Wenn du das Repository auf GitHub hostest, sollten die Tests bei jedem PR automatisch laufen.
