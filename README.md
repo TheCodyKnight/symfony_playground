@@ -44,6 +44,15 @@ http://localhost:8000/hello
 
 Dies zeigt eine einfache HTML-Antwort mit "Hello Symfony!".
 
+Kontaktformular
+
+Das Projekt enthält auch ein Kontaktformular unter `/contact`. Hier können Besucher:
+- ihren Namen
+- ihre E-Mail-Adresse
+- und eine Nachricht eingeben
+
+Die Eingaben werden validiert und bei erfolgreicher Übermittlung wird eine Bestätigungsnachricht angezeigt.
+
 Nützliche Composer-Skripte
 
 - `composer run-script auto-scripts` — führt die in `composer.json` definierten Auto-Scripts aus (z. B. `cache:clear`).
