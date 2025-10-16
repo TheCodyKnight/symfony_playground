@@ -12,5 +12,12 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+    <body>
+        <nav>
+            <a href="{{ path('hello') }}">Hello</a> |
+            <a href="{{ path('contact') }}">Contact</a>
+        </nav>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
     </body>
-</html>
