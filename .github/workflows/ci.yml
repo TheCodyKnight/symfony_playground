@@ -20,21 +20,31 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           tools: composer:v2
+          extensions: zip, intl
           coverage: none
 
-      - name: Get Composer cache
-        id: composer-cache
+      - name: Composer cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.composer/cache
-            vendor
+          path: ~/.composer/cache
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
 
+      - name: Vendor cache
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-vendor-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-vendor-
+
       - name: Install dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist
+        env:
+          COMPOSER_CACHE_DIR: ${{ runner.temp }}/composer-cache
+        run: |
+          composer config cache-dir $COMPOSER_CACHE_DIR
+          composer install --no-progress --no-suggest --prefer-dist --no-interaction
 
       - name: Run tests
         run: php -d memory_limit=2G bin/phpunit --testdox
